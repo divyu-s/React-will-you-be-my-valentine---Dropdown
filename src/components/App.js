@@ -278,7 +278,7 @@ function App()
 		<div id="state">
 			States : <select id="#state" onChange={updateState}>
 				{
-					states.map((elemen,index) =>(
+					states.map((element,index) =>(
 					     <option value={index}>{element.name}</option>
 					))
 				}
