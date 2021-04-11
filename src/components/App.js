@@ -1,4 +1,4 @@
-import React, { useState,useReducer } from "react";
+import React, { useEffect,useState,useReducer } from "react";
 import "./../styles/App.css";
 
 
@@ -141,9 +141,131 @@ const states = [{
 function App() 
 {
 	// Do not alter/remove main div
+	const [selectedState,setSelectedState] = useState("Madhya Pradesh");
+	const [selectedCity,setSelectedCity] = useState('Indore');
+	const [selectedTown,setSelectedTown] = useState("Mhow");
+	useEffect(() => {
+		console.log("logging")
+	})
+	let cities = [{
+		name : "Indore",
+		description:"Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.",
+		landmarks :[{
+			name : "Mhow",
+			description:"Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.",				
+		},{
+			name : "Dewas",
+			description:"Dewas is a city in the Malwa region of the Indian state of Madhya Pradesh. The municipality was formerly the seat of two princely states during the British Raj, Dewas Junior state and Dewas Senior state, ruled by the Puar clan of Maratha.",
+		}]
+	},{
+		name : "Bhopal",
+		description:"DBhopal is a city in the central Indian state of Madhya Pradesh. It's one of India’s greenest city. There are two main lakes, the Upper Lake and the Lower Lake.",
+		landmarks :[{
+			name : "MANIT",
+			description:"Maulana Azad National Institute of Technology Bhopal is a public technical university located in Bhopal, Madhya Pradesh, India. It is part of a group of publicly funded institutions in India known as National Institutes of Technology. ",
+		},{
+			name: "Berasia",
+			description:"Berasia is a landmark and a nagar palika in Bhopal district in the state of Madhya Pradesh, India. ",
+		}]
+	},{
+		name : "Gwalior",
+		description:"Gwalior is a city in the central Indian state of Madhya Pradesh. It's known for its palaces and temples, including the Sas Bahu Ka Mandir intricately carved Hindu temple. ",
+		landmarks :[{
+			name : "Ajaypur",
+			description:"Little less known city Ajaypur.",
+		}]
+	}];
+	let towns  = [{
+		name : "Mhow",
+		description:"Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.",				
+	},{
+		name : "Dewas",
+		description:"Dewas is a city in the Malwa region of the Indian state of Madhya Pradesh. The municipality was formerly the seat of two princely states during the British Raj, Dewas Junior state and Dewas Senior state, ruled by the Puar clan of Maratha.",
+	}];
+	const updateState = (event)=>{
+		let newState = event.target.value;
+		renderCities(newState);
+		setSelectedState(newState);
+		
+	}
+
+	const updateCity = (event)=>{
+		let newCity = event.target.value;
+		setSelectedCity(newCity);
+		renderTown(newCity);
+	}
+
+	const renderCities = (state)=>{
+		let filterCities = states.filter(element=>{
+				return element.name==state;
+			
+		})
+	 cities = filterCities[0].city;
+	 setSelectedCity(filterCities[0].city[0].name);
+	 renderTown(filterCities[0].city[0].name);
+	}
+
+   const renderTown = (city)=>{
+	   console.log(cities);
+	   let filterTowns = cities.filter((element)=>{
+		   return element.name==city;
+	   })
+	   setSelectedTown(filterTowns[0].landmarks[0].name)
+	   towns = filterTowns[0].landmarks;
+	   
+   }
+
+
+
+    
+
 	return (
 	<div id="main">
-		
+		<div class="container">
+		<div class="select">
+		<div id="state">
+			States : <select onChange={updateState}>
+				{
+					states.map(element =>(
+					     <option>{element.name}</option>
+					))
+				}
+			</select>
+		</div>
+		<div id="city">
+		    Cities : <select onChange={updateCity}>
+                   {
+					   console.log(cities)
+					 //    cities.map(element=>(
+					// 	   <option>{element.name}</option>
+					//    ))
+				   }
+			</select>
+		</div>
+		<div id="landmark">
+		    Towns : <select>{
+                    towns.map(element=>(
+						<option>{element.name}</option>
+					))
+                   } </select>
+		</div>
+		</div>
+		<div class="information">
+			<div class="item">
+				<h1  id="#state-name">Madhya Pradesh</h1>
+				<p id="#state-description">Madhya Pradesh, a large state in central India, retains landmarks from eras throughout Indian history.</p>	
+			</div>
+			<div class="item">
+				<h1 id="#city-name">Indore</h1>
+				<p id="#city-description">Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.</p>	
+			</div>
+			<div class="item">
+				<h1 id="#landmark-name">Mhow</h1>
+				<p id="landmark-description">Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.</p>	
+			</div>
+
+		</div>
+		</div>
 	</div>
 	);
 }
