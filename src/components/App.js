@@ -274,8 +274,8 @@ function App()
 	<div id="main">
 		<div className="container">
 		<div className="select">
-		<div id="#state">
-			States : <select onChange={updateState}>
+		<div id="state">
+			States : <select id="#state" onChange={updateState}>
 				{
 					states.map(element =>(
 					     <option>{element.name}</option>
@@ -283,8 +283,8 @@ function App()
 				}
 			</select>
 		</div>
-		<div id="#city">
-		    Cities : <select onChange={updateCity}>
+		<div id="city">
+		    Cities : <select id="#city" onChange={updateCity}>
                    {
 					 // console.log(cities)
 					    cities.map(element=>(
@@ -293,8 +293,8 @@ function App()
 				   }
 			</select>
 		</div>
-		<div id="#landmark">
-		    Towns : <select onChange={updateTown}>{
+		<div id="landmark">
+		    Towns : <select id="#landmark" onChange={updateTown}>{
                     towns.map(element=>(
 						<option>{element.name}</option>
 					))
