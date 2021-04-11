@@ -209,6 +209,7 @@ function App()
 			
 		});
 	 let newCities = [...filterCities[0].city];
+	 console.log(newCities)
 	 stateName.current.innerHTML=filterCities[0].name;
 	 stateDesc.current.innerHTML=filterCities[0].description;
 	 setCities(newCities);
@@ -218,7 +219,7 @@ function App()
 
 	const renderTownDefault = (defaultCity,newCities)=>{
 		
-		    console.log(cities);
+		   // console.log(cities);
             let filterTowns = newCities.filter((element)=>{
                return element.name==defaultCity;
 			})
@@ -287,16 +288,16 @@ function App()
 		    Cities : <select id="#city" onChange={updateCity}>
                    {
 					 // console.log(cities)
-					    cities.map(element=>(
-						   <option>{element.name}</option>
-					   ))
+					    cities.map((element,index)=>index===0?(
+						   <option selected>{element.name}</option>):<option>{element.name}</option>
+						)
 				   }
 			</select>
 		</div>
 		<div id="landmark">
 		    Towns : <select id="#landmark" onChange={updateTown}>{
-                    towns.map(element=>(
-						<option>{element.name}</option>
+                    towns.map((element,index)=>(index===0?
+						<option selected>{element.name}</option>:<option>{element.name}</option>
 					))
                    } </select>
 		</div>
