@@ -1,4 +1,4 @@
-import React, { useEffect,useState,useReducer } from "react";
+import React, {useRef,useEffect,useState } from "react";
 import "./../styles/App.css";
 
 
@@ -140,14 +140,14 @@ const states = [{
 
 function App() 
 {
-	// Do not alter/remove main div
-	const [selectedState,setSelectedState] = useState("Madhya Pradesh");
-	const [selectedCity,setSelectedCity] = useState('Indore');
-	const [selectedTown,setSelectedTown] = useState("Mhow");
+	// Do not alter/remove main diV
+	 const [selectedState,setSelectedState] = useState("");
+	const [selectedCity,setSelectedCity] = useState("");
+	const [selectedTown,setSelectedTown] = useState("");
 	useEffect(() => {
 		console.log("logging")
 	})
-	let cities = [{
+	const [cities,setCities] = useState([{
 		name : "Indore",
 		description:"Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.",
 		landmarks :[{
@@ -174,14 +174,22 @@ function App()
 			name : "Ajaypur",
 			description:"Little less known city Ajaypur.",
 		}]
-	}];
-	let towns  = [{
+	}]);
+	const [towns,setTowns]  = useState([{
 		name : "Mhow",
 		description:"Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.",				
 	},{
 		name : "Dewas",
 		description:"Dewas is a city in the Malwa region of the Indian state of Madhya Pradesh. The municipality was formerly the seat of two princely states during the British Raj, Dewas Junior state and Dewas Senior state, ruled by the Puar clan of Maratha.",
-	}];
+	}]);
+
+	const stateName = useRef();
+	const stateDesc = useRef();
+	const cityName = useRef();
+	const cityDesc = useRef();
+	const townName = useRef();
+	const townDesc = useRef();
+
 	const updateState = (event)=>{
 		let newState = event.target.value;
 		renderCities(newState);
@@ -197,32 +205,75 @@ function App()
 
 	const renderCities = (state)=>{
 		let filterCities = states.filter(element=>{
-				return element.name==state;
+				return element.name===state;
 			
-		})
-	 cities = filterCities[0].city;
-	 setSelectedCity(filterCities[0].city[0].name);
-	 renderTown(filterCities[0].city[0].name);
+		});
+	 let newCities = [...filterCities[0].city];
+	 stateName.current.innerHTML=filterCities[0].name;
+	 stateDesc.current.innerHTML=filterCities[0].description;
+	 setCities(newCities);
+	 setSelectedCity(newCities[0].name);
+	 renderTownDefault(newCities[0].name,newCities);
+	}
+
+	const renderTownDefault = (defaultCity,newCities)=>{
+		
+		    console.log(cities);
+            let filterTowns = newCities.filter((element)=>{
+               return element.name==defaultCity;
+			})
+			let newTowns = [...filterTowns[0].landmarks];
+			cityName.current.innerHTML=defaultCity;
+			cityDesc.current.innerHTML=newCities[0].description;
+			setTowns(newTowns);
+			renderTownInformationDefault(newTowns);
+			setSelectedTown(newTowns[0].name);
+	}
+
+	const renderTownInformationDefault = (towns)=>{
+		townName.current.innerHTML=towns[0].name;
+		townDesc.current.innerHTML=towns[0].description;
+
+
 	}
 
    const renderTown = (city)=>{
-	   console.log(cities);
+	 //  console.log(cities);
 	   let filterTowns = cities.filter((element)=>{
 		   return element.name==city;
 	   })
-	   setSelectedTown(filterTowns[0].landmarks[0].name)
-	   towns = filterTowns[0].landmarks;
 	   
+	   cityName.current.innerHTML=filterTowns[0].name;
+	   cityDesc.current.innerHTML=filterTowns[0].description;
+	   setSelectedTown(filterTowns[0].landmarks[0].name)
+	   let newTowns = [...filterTowns[0].landmarks];
+	   renderTownInformationDefault(newTowns);
+	   setTowns(newTowns);  
    }
 
+   const updateTown = (event)=>{
+	   setSelectedTown(event.target.value);
+	   renderTownInformation(event.target.value);
+
+   }
+
+   const renderTownInformation = (town)=>{
+	   let filterTownName = towns.filter(element=>{
+		   return element.name==town
+		  })
+	 
+	   townName.current.innerHTML=filterTownName[0].name;
+	   townDesc.current.innerHTML=filterTownName[0].description;
+
+   }
 
 
     
 
 	return (
 	<div id="main">
-		<div class="container">
-		<div class="select">
+		<div className="container">
+		<div className="select">
 		<div id="state">
 			States : <select onChange={updateState}>
 				{
@@ -235,33 +286,33 @@ function App()
 		<div id="city">
 		    Cities : <select onChange={updateCity}>
                    {
-					   console.log(cities)
-					 //    cities.map(element=>(
-					// 	   <option>{element.name}</option>
-					//    ))
+					 // console.log(cities)
+					    cities.map(element=>(
+						   <option>{element.name}</option>
+					   ))
 				   }
 			</select>
 		</div>
 		<div id="landmark">
-		    Towns : <select>{
+		    Towns : <select onChange={updateTown}>{
                     towns.map(element=>(
 						<option>{element.name}</option>
 					))
                    } </select>
 		</div>
 		</div>
-		<div class="information">
-			<div class="item">
-				<h1  id="#state-name">Madhya Pradesh</h1>
-				<p id="#state-description">Madhya Pradesh, a large state in central India, retains landmarks from eras throughout Indian history.</p>	
+		<div className="information">
+			<div className="item">
+				<h1  id="#state-name" ref={stateName}>Madhya Pradesh</h1>
+				<p id="#state-description" ref={stateDesc}>Madhya Pradesh, a large state in central India, retains landmarks from eras throughout Indian history.</p>	
 			</div>
-			<div class="item">
-				<h1 id="#city-name">Indore</h1>
-				<p id="#city-description">Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.</p>	
+			<div className="item">
+				<h1 id="#city-name" ref={cityName}>Indore</h1>
+				<p id="#city-description" ref={cityDesc}>Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.</p>	
 			</div>
-			<div class="item">
-				<h1 id="#landmark-name">Mhow</h1>
-				<p id="landmark-description">Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.</p>	
+			<div className="item">
+				<h1 id="#landmark-name" ref={townName}>Mhow</h1>
+				<p id="landmark-description" ref={townDesc}>Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.</p>	
 			</div>
 
 		</div>
