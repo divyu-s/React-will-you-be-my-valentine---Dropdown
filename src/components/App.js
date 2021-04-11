@@ -278,8 +278,8 @@ function App()
 		<div id="state">
 			States : <select id="#state" onChange={updateState}>
 				{
-					states.map(element =>(
-					     <option>{element.name}</option>
+					states.map((elemen,index) =>(
+					     <option value={index}>{element.name}</option>
 					))
 				}
 			</select>
@@ -289,7 +289,7 @@ function App()
                    {
 					 // console.log(cities)
 					    cities.map((element,index)=>index===0?(
-						   <option selected>{element.name}</option>):<option>{element.name}</option>
+						   <option value={index} selected>{element.name}</option>):<option value={index}>{element.name}</option>
 						)
 				   }
 			</select>
@@ -297,7 +297,7 @@ function App()
 		<div id="landmark">
 		    Towns : <select id="#landmark" onChange={updateTown}>{
                     towns.map((element,index)=>(index===0?
-						<option selected>{element.name}</option>:<option>{element.name}</option>
+						<option value={index} selected>{element.name}</option>:<option value={index}>{element.name}</option>
 					))
                    } </select>
 		</div>
