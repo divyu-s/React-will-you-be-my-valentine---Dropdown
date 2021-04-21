@@ -140,107 +140,107 @@ const states = [{
 
 function App() 
 {
-	// Do not alter/remove main diV
-	 const [selectedState,setSelectedState] = useState("Madya Pradesh");
-	const [selectedCity,setSelectedCity] = useState("Indore");
-	const [selectedTown,setSelectedTown] = useState("Mhow");
+	// // Do not alter/remove main diV
+	//  const [selectedState,setSelectedState] = useState("Madya Pradesh");
+	// const [selectedCity,setSelectedCity] = useState("Indore");
+	// const [selectedTown,setSelectedTown] = useState("Mhow");
 	
-	const [cities,setCities] = useState([{
-		name : "Indore",
-		description:"Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.",
-		landmarks :[{
-			name : "Mhow",
-			description:"Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.",				
-		},{
-			name : "Dewas",
-			description:"Dewas is a city in the Malwa region of the Indian state of Madhya Pradesh. The municipality was formerly the seat of two princely states during the British Raj, Dewas Junior state and Dewas Senior state, ruled by the Puar clan of Maratha.",
-		}]
-	},{
-		name : "Bhopal",
-		description:"DBhopal is a city in the central Indian state of Madhya Pradesh. It's one of India’s greenest city. There are two main lakes, the Upper Lake and the Lower Lake.",
-		landmarks :[{
-			name : "MANIT",
-			description:"Maulana Azad National Institute of Technology Bhopal is a public technical university located in Bhopal, Madhya Pradesh, India. It is part of a group of publicly funded institutions in India known as National Institutes of Technology. ",
-		},{
-			name: "Berasia",
-			description:"Berasia is a landmark and a nagar palika in Bhopal district in the state of Madhya Pradesh, India. ",
-		}]
-	},{
-		name : "Gwalior",
-		description:"Gwalior is a city in the central Indian state of Madhya Pradesh. It's known for its palaces and temples, including the Sas Bahu Ka Mandir intricately carved Hindu temple. ",
-		landmarks :[{
-			name : "Ajaypur",
-			description:"Little less known city Ajaypur.",
-		}]
-	}]);
-	const [towns,setTowns]  = useState([{
-		name : "Mhow",
-		description:"Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.",				
-	},{
-		name : "Dewas",
-		description:"Dewas is a city in the Malwa region of the Indian state of Madhya Pradesh. The municipality was formerly the seat of two princely states during the British Raj, Dewas Junior state and Dewas Senior state, ruled by the Puar clan of Maratha.",
-	}]);
+	// const [cities,setCities] = useState([{
+	// 	name : "Indore",
+	// 	description:"Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.",
+	// 	landmarks :[{
+	// 		name : "Mhow",
+	// 		description:"Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.",				
+	// 	},{
+	// 		name : "Dewas",
+	// 		description:"Dewas is a city in the Malwa region of the Indian state of Madhya Pradesh. The municipality was formerly the seat of two princely states during the British Raj, Dewas Junior state and Dewas Senior state, ruled by the Puar clan of Maratha.",
+	// 	}]
+	// },{
+	// 	name : "Bhopal",
+	// 	description:"DBhopal is a city in the central Indian state of Madhya Pradesh. It's one of India’s greenest city. There are two main lakes, the Upper Lake and the Lower Lake.",
+	// 	landmarks :[{
+	// 		name : "MANIT",
+	// 		description:"Maulana Azad National Institute of Technology Bhopal is a public technical university located in Bhopal, Madhya Pradesh, India. It is part of a group of publicly funded institutions in India known as National Institutes of Technology. ",
+	// 	},{
+	// 		name: "Berasia",
+	// 		description:"Berasia is a landmark and a nagar palika in Bhopal district in the state of Madhya Pradesh, India. ",
+	// 	}]
+	// },{
+	// 	name : "Gwalior",
+	// 	description:"Gwalior is a city in the central Indian state of Madhya Pradesh. It's known for its palaces and temples, including the Sas Bahu Ka Mandir intricately carved Hindu temple. ",
+	// 	landmarks :[{
+	// 		name : "Ajaypur",
+	// 		description:"Little less known city Ajaypur.",
+	// 	}]
+	// }]);
+	// const [towns,setTowns]  = useState([{
+	// 	name : "Mhow",
+	// 	description:"Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.",				
+	// },{
+	// 	name : "Dewas",
+	// 	description:"Dewas is a city in the Malwa region of the Indian state of Madhya Pradesh. The municipality was formerly the seat of two princely states during the British Raj, Dewas Junior state and Dewas Senior state, ruled by the Puar clan of Maratha.",
+	// }]);
 
-	const stateName = useRef();
-	const stateDesc = useRef();
-	const cityName = useRef();
-	const cityDesc = useRef();
-	const townName = useRef();
-	const townDesc = useRef();
+	// const stateName = useRef();
+	// const stateDesc = useRef();
+	// const cityName = useRef();
+	// const cityDesc = useRef();
+	// const townName = useRef();
+	// const townDesc = useRef();
 
-	const updateState = (event)=>{
-		let index = event.target.value;
-		stateName.current.innerText = states[index].name;
-		stateDesc.current.innerText = states[index].description;
-		renderDefalutCities(index);
-		setSelectedState(states[index].name);
+	// const updateState = (event)=>{
+	// 	let index = event.target.value;
+	// 	stateName.current.innerText = states[index].name;
+	// 	stateDesc.current.innerText = states[index].description;
+	// 	renderDefalutCities(index);
+	// 	setSelectedState(states[index].name);
 		
-	}
+	// }
 
-	const renderDefalutCities = (index)=>{
-		let filterCities = states[index].city;
-		cityName.current.innerText = filterCities[0].name;
-		cityDesc.current.innerText = filterCities[0].description;
-		renderDefaultTowns(0,filterCities);
-		setCities(filterCities);
-		setSelectedCity(filterCities[0].name);
+	// const renderDefalutCities = (index)=>{
+	// 	let filterCities = states[index].city;
+	// 	cityName.current.innerText = filterCities[0].name;
+	// 	cityDesc.current.innerText = filterCities[0].description;
+	// 	renderDefaultTowns(0,filterCities);
+	// 	setCities(filterCities);
+	// 	setSelectedCity(filterCities[0].name);
 
-	}
+	// }
 
-	const renderDefaultTowns = (index,filterCities)=>{
+	// const renderDefaultTowns = (index,filterCities)=>{
 		
-		let filterTowns = filterCities[index].landmarks;
-		townName.current.innerText = filterTowns[0].name;
-		townDesc.current.innerText = filterTowns[0].description;
-		setSelectedTown(filterTowns[0].name)
-		setTowns(filterTowns);
+	// 	let filterTowns = filterCities[index].landmarks;
+	// 	townName.current.innerText = filterTowns[0].name;
+	// 	townDesc.current.innerText = filterTowns[0].description;
+	// 	setSelectedTown(filterTowns[0].name)
+	// 	setTowns(filterTowns);
 		
 
-	}
+	// }
 
-	const updateCity = (e)=>{
-		let index = e.target.value;
-		cityName.current.innerText = cities[index].name;
-		cityDesc.current.innerText = cities[index].description;
-		setSelectedCity(cities[index].name);
-		renderDefaultACTowns(index)
+	// const updateCity = (e)=>{
+	// 	let index = e.target.value;
+	// 	cityName.current.innerText = cities[index].name;
+	// 	cityDesc.current.innerText = cities[index].description;
+	// 	setSelectedCity(cities[index].name);
+	// 	renderDefaultACTowns(index)
 
-	}
+	// }
 
-	const renderDefaultACTowns = (index)=>{
-		let filterTowns = cities[index].landmarks;
-		townName.current.innerText = filterTowns[0].name;
-		townDesc.current.innerText = filterTowns[0].description;
-		setSelectedTown(filterTowns[0].name);
-		setTowns(filterTowns);
-	}
+	// const renderDefaultACTowns = (index)=>{
+	// 	let filterTowns = cities[index].landmarks;
+	// 	townName.current.innerText = filterTowns[0].name;
+	// 	townDesc.current.innerText = filterTowns[0].description;
+	// 	setSelectedTown(filterTowns[0].name);
+	// 	setTowns(filterTowns);
+	// }
 	
-    const updateTown = (e)=>{
-		  townName.current.innerText=towns[e.target.value].name;
-		  townDesc.current.innerText=towns[e.target.value].description;
-             setSelectedTown(towns[e.target.value].name);
+    // const updateTown = (e)=>{
+	// 	  townName.current.innerText=towns[e.target.value].name;
+	// 	  townDesc.current.innerText=towns[e.target.value].description;
+    //          setSelectedTown(towns[e.target.value].name);
 
-	}
+	// }
 
  
 
@@ -248,56 +248,117 @@ function App()
 
     
 
-	return (
-	<div id="main">
-		<div className="container">
-		<div className="select">
-		<div id="state">
-			States : <select id="#state" onChange={updateState}>
-				{
-					states.map((element,index) =>(
-					     <option value={index} key={`states${index+1}`}>{element.name}</option>
-					))
-				}
-			</select>
-		</div>
-		<div id="city">
-		    Cities : <select id="#city" onChange={updateCity}>
-                   {
-					 // console.log(cities)
-					    cities.map((element,index)=>(
-						   <option value={index} key={`cities${index+1}`}>{element.name}</option>
-						)
-						)
-				   }
-			</select>
-		</div>
-		<div id="landmark">
-		    Towns : <select id="#landmark" onChange={updateTown}>{
-                    towns.map((element,index)=>(
-						<option value={index} key={`towns${index+1}`}>{element.name}</option>
-					))
-                   } </select>
-		</div>
-		</div>
-		<div className="information">
-			<div className="item">
-				<div  id="#state-name" ref={stateName}>Madhya Pradesh</div>
-				<div id="#state-description" ref={stateDesc}>Madhya Pradesh, a large state in central India, retains landmarks from eras throughout Indian history.</div>	
-			</div>
-			<div className="item">
-				<div id="#city-name" ref={cityName}>Indore</div>
-				<div id="#city-description" ref={cityDesc}>Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.</div>	
-			</div>
-			<div className="item">
-				<div id="#landmark-name" ref={townName}>Mhow</div>
-				<div id="landmark-description" ref={townDesc}>Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.</div>	
-			</div>
+	// return (
+	// <div id="main">
+	// 	<div className="container">
+	// 	<div className="select">
+	// 	<div id="state">
+	// 		States : <select id="#state" onChange={updateState}>
+	// 			{
+	// 				states.map((element,index) =>(
+	// 				     <option value={index} key={`states${index+1}`}>{element.name}</option>
+	// 				))
+	// 			}
+	// 		</select>
+	// 	</div>
+	// 	<div id="city">
+	// 	    Cities : <select id="#city" onChange={updateCity}>
+    //                {
+	// 				 // console.log(cities)
+	// 				    cities.map((element,index)=>(
+	// 					   <option value={index} key={`cities${index+1}`}>{element.name}</option>
+	// 					)
+	// 					)
+	// 			   }
+	// 		</select>
+	// 	</div>
+	// 	<div id="landmark">
+	// 	    Towns : <select id="#landmark" onChange={updateTown}>{
+    //                 towns.map((element,index)=>(
+	// 					<option value={index} key={`towns${index+1}`}>{element.name}</option>
+	// 				))
+    //                } </select>
+	// 	</div>
+	// 	</div>
+	// 	<div className="information">
+	// 		<div className="item">
+	// 			<div  id="#state-name" ref={stateName}>Madhya Pradesh</div>
+	// 			<div id="#state-description" ref={stateDesc}>Madhya Pradesh, a large state in central India, retains landmarks from eras throughout Indian history.</div>	
+	// 		</div>
+	// 		<div className="item">
+	// 			<div id="#city-name" ref={cityName}>Indore</div>
+	// 			<div id="#city-description" ref={cityDesc}>Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.</div>	
+	// 		</div>
+	// 		<div className="item">
+	// 			<div id="#landmark-name" ref={townName}>Mhow</div>
+	// 			<div id="landmark-description" ref={townDesc}>Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.</div>	
+	// 		</div>
 
-		</div>
-		</div>
-	</div>
-	);
+	// 	</div>
+	// 	</div>
+	// </div>
+	// );
+	const [state, setstate] = useState(0);
+  const [city, setcity] = useState(0);
+  const [landmark, setlandmark] = useState(0);
+
+  // Do not alter/remove main div
+  const getOptions = (arr) => {
+    return arr.map((item, index) => (
+      <option key={index} value={index}>
+        {arr[index].name}
+      </option>
+    ));
+  };
+  const getDivs = (place, arr) => {
+    return (
+      <div style={divStyles}>
+        <div id={place + "-name"}>
+          <strong>{arr.name}</strong>
+        </div>
+        <div id={place + "-description"}>{arr.description}</div>
+      </div>
+    );
+  };
+  const setplace = (place, val) => {
+    if (place === "state") {
+      setstate(val);
+    } else if (place === "city") {
+      setcity(val);
+    } else {
+      setlandmark(val);
+    }
+  };
+  return (
+    <div id="main" style={styles}>
+      <div>
+        {["state", "city", "landmark"].map((place, index) => (
+          <select
+            key={index}
+            style={selectStyle}
+            name={place}
+            id={place}
+            onClick={(event) => setplace(place, event.target.value)}
+          >
+            {place === "state"
+              ? getOptions(states)
+              : place === "city"
+              ? getOptions(states[state].city)
+              : getOptions(states[state].city[city].landmarks)}
+          </select>
+        ))}
+      </div>
+      <div>
+        {["state", "city", "landmark"].map((place, index) =>
+          place === "state"
+            ? getDivs(place, states[state])
+            : place === "city"
+            ? getDivs(place, states[state].city[city])
+            : getDivs(place, states[state].city[city].landmarks[landmark])
+        )}
+      </div>
+    </div>
+  );
 }
 
 
