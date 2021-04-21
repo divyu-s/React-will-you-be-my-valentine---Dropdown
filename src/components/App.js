@@ -202,7 +202,6 @@ function App()
 		cityName.current.innerText = filterCities[0].name;
 		cityDesc.current.innerText = filterCities[0].description;
 		renderDefaultTowns(0,filterCities);
-		
 		setCities(filterCities);
 		setSelectedCity(filterCities[0].name);
 
@@ -283,16 +282,16 @@ function App()
 		</div>
 		<div className="information">
 			<div className="item">
-				<h1  id="#state-name" ref={stateName}>Madhya Pradesh</h1>
-				<p id="#state-description" ref={stateDesc}>Madhya Pradesh, a large state in central India, retains landmarks from eras throughout Indian history.</p>	
+				<div  id="#state-name" ref={stateName}>Madhya Pradesh</div>
+				<div id="#state-description" ref={stateDesc}>Madhya Pradesh, a large state in central India, retains landmarks from eras throughout Indian history.</div>	
 			</div>
 			<div className="item">
-				<h1 id="#city-name" ref={cityName}>Indore</h1>
-				<p id="#city-description" ref={cityDesc}>Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.</p>	
+				<div id="#city-name" ref={cityName}>Indore</div>
+				<div id="#city-description" ref={cityDesc}>Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.</div>	
 			</div>
 			<div className="item">
-				<h1 id="#landmark-name" ref={townName}>Mhow</h1>
-				<p id="landmark-description" ref={townDesc}>Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.</p>	
+				<div id="#landmark-name" ref={townName}>Mhow</div>
+				<div id="landmark-description" ref={townDesc}>Dr. Ambedkar Nagar, commonly known as Mhow, is a cantonment in the Indore district in Madhya Pradesh state of India. It is located 23 kilometres south-west of Indore city, towards Mumbai on the old Mumbai-Agra Road.</div>	
 			</div>
 
 		</div>
