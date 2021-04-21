@@ -141,12 +141,10 @@ const states = [{
 function App() 
 {
 	// Do not alter/remove main diV
-	 const [selectedState,setSelectedState] = useState("");
-	const [selectedCity,setSelectedCity] = useState("");
-	const [selectedTown,setSelectedTown] = useState("");
-	useEffect(() => {
-		console.log("logging")
-	})
+	 const [selectedState,setSelectedState] = useState("Madya Pradesh");
+	const [selectedCity,setSelectedCity] = useState("Indore");
+	const [selectedTown,setSelectedTown] = useState("Mhow");
+	
 	const [cities,setCities] = useState([{
 		name : "Indore",
 		description:"Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.",
@@ -191,82 +189,62 @@ function App()
 	const townDesc = useRef();
 
 	const updateState = (event)=>{
-		let newState = event.target.value;
-		renderCities(newState);
-		setSelectedState(newState);
+		let index = event.target.value;
+		stateName.current.innerText = states[index].name;
+		stateDesc.current.innerText = states[index].description;
+		renderDefalutCities(index);
+		setSelectedState(states[index].name);
 		
 	}
 
-	const updateCity = (event)=>{
-		let newCity = event.target.value;
-		setSelectedCity(newCity);
-		renderTown(newCity);
-	}
-
-	const renderCities = (state)=>{
-		let filterCities = states.filter(element=>{
-				return element.name===state;
-			
-		});
-	 let newCities = [...filterCities[0].city];
-	 console.log(newCities)
-	 stateName.current.innerHTML=filterCities[0].name;
-	 stateDesc.current.innerHTML=filterCities[0].description;
-	 setCities(newCities);
-	 setSelectedCity(newCities[0].name);
-	 renderTownDefault(newCities[0].name,newCities);
-	}
-
-	const renderTownDefault = (defaultCity,newCities)=>{
+	const renderDefalutCities = (index)=>{
+		let filterCities = states[index].city;
+		cityName.current.innerText = filterCities[0].name;
+		cityDesc.current.innerText = filterCities[0].description;
+		renderDefaultTowns(0,filterCities);
 		
-		   // console.log(cities);
-            let filterTowns = newCities.filter((element)=>{
-               return element.name==defaultCity;
-			})
-			let newTowns = [...filterTowns[0].landmarks];
-			cityName.current.innerHTML=defaultCity;
-			cityDesc.current.innerHTML=newCities[0].description;
-			setTowns(newTowns);
-			renderTownInformationDefault(newTowns);
-			setSelectedTown(newTowns[0].name);
-	}
-
-	const renderTownInformationDefault = (towns)=>{
-		townName.current.innerHTML=towns[0].name;
-		townDesc.current.innerHTML=towns[0].description;
-
+		setCities(filterCities);
+		setSelectedCity(filterCities[0].name);
 
 	}
 
-   const renderTown = (city)=>{
-	 //  console.log(cities);
-	   let filterTowns = cities.filter((element)=>{
-		   return element.name==city;
-	   })
-	   
-	   cityName.current.innerHTML=filterTowns[0].name;
-	   cityDesc.current.innerHTML=filterTowns[0].description;
-	   setSelectedTown(filterTowns[0].landmarks[0].name)
-	   let newTowns = [...filterTowns[0].landmarks];
-	   renderTownInformationDefault(newTowns);
-	   setTowns(newTowns);  
-   }
+	const renderDefaultTowns = (index,filterCities)=>{
+		
+		let filterTowns = filterCities[index].landmarks;
+		townName.current.innerText = filterTowns[0].name;
+		townDesc.current.innerText = filterTowns[0].description;
+		setSelectedTown(filterTowns[0].name)
+		setTowns(filterTowns);
+		
 
-   const updateTown = (event)=>{
-	   setSelectedTown(event.target.value);
-	   renderTownInformation(event.target.value);
+	}
 
-   }
+	const updateCity = (e)=>{
+		let index = e.target.value;
+		cityName.current.innerText = cities[index].name;
+		cityDesc.current.innerText = cities[index].description;
+		setSelectedCity(cities[index].name);
+		renderDefaultACTowns(index)
 
-   const renderTownInformation = (town)=>{
-	   let filterTownName = towns.filter(element=>{
-		   return element.name==town
-		  })
-	 
-	   townName.current.innerHTML=filterTownName[0].name;
-	   townDesc.current.innerHTML=filterTownName[0].description;
+	}
 
-   }
+	const renderDefaultACTowns = (index)=>{
+		let filterTowns = cities[index].landmarks;
+		townName.current.innerText = filterTowns[0].name;
+		townDesc.current.innerText = filterTowns[0].description;
+		setSelectedTown(filterTowns[0].name);
+		setTowns(filterTowns);
+	}
+	
+    const updateTown = (e)=>{
+		  townName.current.innerText=towns[e.target.value].name;
+		  townDesc.current.innerText=towns[e.target.value].description;
+             setSelectedTown(towns[e.target.value].name);
+
+	}
+
+ 
+
 
 
     
@@ -279,7 +257,7 @@ function App()
 			States : <select id="#state" onChange={updateState}>
 				{
 					states.map((element,index) =>(
-					     <option value={index}>{element.name}</option>
+					     <option value={index} key={`states${index+1}`}>{element.name}</option>
 					))
 				}
 			</select>
@@ -288,16 +266,17 @@ function App()
 		    Cities : <select id="#city" onChange={updateCity}>
                    {
 					 // console.log(cities)
-					    cities.map((element,index)=>index===0?(
-						   <option value={index} selected>{element.name}</option>):<option value={index}>{element.name}</option>
+					    cities.map((element,index)=>(
+						   <option value={index} key={`cities${index+1}`}>{element.name}</option>
+						)
 						)
 				   }
 			</select>
 		</div>
 		<div id="landmark">
 		    Towns : <select id="#landmark" onChange={updateTown}>{
-                    towns.map((element,index)=>(index===0?
-						<option value={index} selected>{element.name}</option>:<option value={index}>{element.name}</option>
+                    towns.map((element,index)=>(
+						<option value={index} key={`towns${index+1}`}>{element.name}</option>
 					))
                    } </select>
 		</div>
