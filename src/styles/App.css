@@ -1,54 +1,17 @@
-* {
-  margin: 0px;
-  padding: 0px;
-}
-.item h1 {
-  color: #27aedb;
-  text-align: center;
-  margin-bottom: 1px;
-}
-
-button {
-  color: #27aedb;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.bg-pink {
-  background-color: pink;
-}
-
-.container {
+#main {
   display: flex;
-  margin-top: 100px;
+  justify-content: space-between;
 }
 
-.information {
+#main > div {
   display: flex;
   flex-direction: column;
-}
-
-.item {
-  border: 2px solid black;
-  margin: 5px;
-  padding: 5px;
-}
-
-.select {
   margin-left: 5px;
   margin-right: 5px;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
-#state {
-  margin-bottom: 5px;
-}
-
-#city {
-  margin-bottom: 5px;
-}
-#landmark {
-  margin-bottom: 5px;
+#main > div > div {
+  border: 2px solid black;
+  padding: 3px;
+  margin: 3px;
 }
